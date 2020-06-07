@@ -26,7 +26,7 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Test
       env: 
-        ci_node_index: ${{ci_node_index}}      
+        ci_node_index: ${{ matrix.ci_node_index }}
       run: dotnet test HelloWorldTest 
     - name: Linting Stage
       run: | 
@@ -34,7 +34,7 @@ jobs:
         dotnet build
     - name: Running integration Test
       env: 
-        ci_node_index: ${{ci_node_index}}
+        ci_node_index: ${{ matrix.ci_node_index }}
       if: github.ref == 'refs/heads/master'
       run: dotnet test HelloWorldSolutions.Tests
 
