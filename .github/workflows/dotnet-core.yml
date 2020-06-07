@@ -22,4 +22,10 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Test
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test HelloWorldTest 
+    - name: Add package StyleCop.Analyzers
+      run: dotnet  add HelloWorldSolution package StyleCop.Analyzers
+    - name: Building again for linting 
+      run: dotnet build
+    - name: Running integration Test
+      run: dotnet test HelloWorldSolutions.Tests
