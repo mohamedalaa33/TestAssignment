@@ -2,9 +2,9 @@ name: .NET Core
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, release-1.1 ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, release-1.1 ]
 
 jobs:
   build:
@@ -28,4 +28,6 @@ jobs:
     - name: Building again for linting 
       run: dotnet build
     - name: Running integration Test
+      if: github.ref == 'refs/heads/master'
       run: dotnet test HelloWorldSolutions.Tests
+
