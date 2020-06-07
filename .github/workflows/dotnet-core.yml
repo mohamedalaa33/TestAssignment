@@ -10,8 +10,6 @@ jobs:
   build:
     strategy:
       fail-fast: false
-      matrix:
-        ci_node_index: [0, 1]
     runs-on: ubuntu-latest
 
     steps:
@@ -25,16 +23,12 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Test
-      env: 
-        ci_node_index: ${{ matrix.ci_node_index }}
       run: dotnet test HelloWorldTest 
     - name: Linting Stage
       run: | 
         dotnet  add HelloWorldSolution package StyleCop.Analyzers
         dotnet build
     - name: Running integration Test
-      env: 
-        ci_node_index: ${{ matrix.ci_node_index }}
       if: github.ref == 'refs/heads/master'
       run: dotnet test HelloWorldSolutions.Tests
 
