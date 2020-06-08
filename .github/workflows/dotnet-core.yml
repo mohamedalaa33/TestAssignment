@@ -26,7 +26,7 @@ jobs:
       run: dotnet test HelloWorldTest 
     - name: Linting Stage
       run: | 
-        dotnet tool install -g dotnet-formatdotnet-format
+        dotnet tool install --global dotnet-format --version 4.0.130203
         dotnet-format HelloWorldSolution
     - name: Running integration Test
       if: github.ref == 'refs/heads/master'
