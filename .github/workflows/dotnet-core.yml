@@ -26,8 +26,8 @@ jobs:
       run: dotnet test HelloWorldTest 
     - name: Linting Stage
       run: | 
-        dotnet  add HelloWorldSolution package StyleCop.Analyzers
-        dotnet build
+        dotnet tool install -g dotnet-formatdotnet-format
+        dotnet-format HelloWorldSolution
     - name: Running integration Test
       if: github.ref == 'refs/heads/master'
       run: dotnet test HelloWorldSolutions.Tests
